@@ -1,0 +1,168 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 20%, #121a24 0%, #040508 55%, #020204 100%);
+}
+
+canvas {
+  display: block;
+}
+
+.ui-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.panel,
+.menu-screen {
+  background: linear-gradient(140deg, rgba(22, 30, 42, 0.55), rgba(11, 17, 27, 0.45));
+  border: 1px solid rgba(230, 196, 115, 0.24);
+  border-radius: 14px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), inset 0 0 28px rgba(179, 148, 74, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+button,
+input,
+label {
+  pointer-events: auto;
+}
+
+.hud {
+  position: absolute;
+  inset: 14px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: start;
+  color: #f7ecd1;
+}
+
+.scoreboard,
+.message {
+  padding: 12px 14px;
+}
+
+.controls,
+.meter,
+.settings {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls button,
+.menu-screen button {
+  background: linear-gradient(145deg, #9f7c2a, #d8b76b);
+  color: #111;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.controls button:hover,
+.menu-screen button:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 0 20px rgba(255, 210, 110, 0.42);
+}
+
+.menu-screen {
+  pointer-events: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(620px, 92vw);
+  text-align: center;
+  padding: 24px;
+  animation: fadeUp 0.5s ease;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.message {
+  grid-column: 1 / -1;
+  min-height: 1.5em;
+}
+
+.spin-grid {
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: radial-gradient(circle at 50% 50%, #0e693c 0, #0a3f26 65%, #0a2518 100%);
+  position: relative;
+}
+
+.spin-grid::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ffd468;
+  position: absolute;
+  left: calc(50% - 7px + var(--sx, 0px));
+  top: calc(50% - 7px + var(--sy, 0px));
+  transition: left 0.08s linear, top 0.08s linear;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.mobile-shoot {
+  pointer-events: auto;
+  position: absolute;
+  right: 18px;
+  bottom: 20px;
+  border-radius: 999px;
+  width: 84px;
+  height: 84px;
+}
+
+@media (max-width: 900px) {
+  .hud {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    font-size: 14px;
+  }
+
+  .controls button {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .menu-row {
+    flex-direction: column;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -44%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
